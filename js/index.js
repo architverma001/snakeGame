@@ -171,27 +171,58 @@ else{
 window.requestAnimationFrame(main);
 
 
-window.addEventListener('touchmove', (e) => {
-    const touchMoveX = e.touches[0].clientX;
-    const touchMoveY = e.touches[0].clientY;
-  
-    const diffX = touchMoveX - touchStartX;
-    const diffY = touchMoveY - touchStartY;
-  
+
+window.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  });
+window.addEventListener('touchend', handleTouch);
+window.addEventListener('touchmove', handleTouch);
+
+function handleTouch(e) {
+  if (e.type === 'touchend') {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
     if (Math.abs(diffX) > Math.abs(diffY)) {
-      if (diffX > touchThreshold) {
+      if (diffX > touchThreshold && inputDir.x !== -1) {
         inputDir = { x: 1, y: 0 };
-      } else if (diffX < -touchThreshold) {
+      } else if (diffX < -touchThreshold && inputDir.x !== 1) {
         inputDir = { x: -1, y: 0 };
       }
     } else {
-      if (diffY > touchThreshold) {
+      if (diffY > touchThreshold && inputDir.y !== -1) {
         inputDir = { x: 0, y: 1 };
-      } else if (diffY < -touchThreshold) {
+      } else if (diffY < -touchThreshold && inputDir.y !== 1) {
         inputDir = { x: 0, y: -1 };
       }
     }
-  });
+  } else if (e.type === 'touchmove') {
+    const touchMoveX = e.touches[0].clientX;
+    const touchMoveY = e.touches[0].clientY;
+
+    const diffX = touchMoveX - touchStartX;
+    const diffY = touchMoveY - touchStartY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX > touchThreshold && inputDir.x !== -1) {
+        inputDir = { x: 1, y: 0 };
+      } else if (diffX < -touchThreshold && inputDir.x !== 1) {
+        inputDir = { x: -1, y: 0 };
+      }
+    } else {
+      if (diffY > touchThreshold && inputDir.y !== -1) {
+        inputDir = { x: 0, y: 1 };
+      } else if (diffY < -touchThreshold && inputDir.y !== 1) {
+        inputDir = { x: 0, y: -1 };
+      }
+    }
+  }
+}
+
   
 
 window.addEventListener('keydown', e => {
