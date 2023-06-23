@@ -170,6 +170,30 @@ else{
 }
 window.requestAnimationFrame(main);
 
+
+window.addEventListener('touchmove', (e) => {
+    const touchMoveX = e.touches[0].clientX;
+    const touchMoveY = e.touches[0].clientY;
+  
+    const diffX = touchMoveX - touchStartX;
+    const diffY = touchMoveY - touchStartY;
+  
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX > touchThreshold) {
+        inputDir = { x: 1, y: 0 };
+      } else if (diffX < -touchThreshold) {
+        inputDir = { x: -1, y: 0 };
+      }
+    } else {
+      if (diffY > touchThreshold) {
+        inputDir = { x: 0, y: 1 };
+      } else if (diffY < -touchThreshold) {
+        inputDir = { x: 0, y: -1 };
+      }
+    }
+  });
+  
+
 window.addEventListener('keydown', e => {
     inputDir = { x: 0, y: 1 }; //start the game
     moveSound.play();
