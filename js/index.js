@@ -4,7 +4,7 @@ let foodSound = new Audio('music/food.mp3');
 let gameOverSound = new Audio('music/gameover.mp3');
 let moveSound = new Audio('music/move.mp3');
 let musicSound = new Audio('music/music.mp3');
-let speed = 2;
+let speed = 2.5;
 let score = 0;
 let big = false;
 let cld = false;
@@ -97,7 +97,7 @@ if(snakeArr[0].x === food.x  && snakeArr[0].y  === food.y){
     const t = Math.round(a + (b-a)*Math.random());
  
     food = {x:Math.round(a + (b-a)*Math.random()),y:Math.round(a + (b-a)*Math.random())}
-    if(t%7===0){
+    if(t===7){
         big = true;
         bigFoodTimeout = setTimeout(resetBigFood, 9500)
        
