@@ -70,6 +70,7 @@ function gameEngine(){
         alert("Game Over. Press any key to play again!");
         snakeArr = [{x:13,y:15}];
         musicSound.play();
+        scoreBox.innerHTML = "Score: 0";
         score = 0;
     }
     if(snakeArr[0].x>25)snakeArr[0].x = (snakeArr[0].x)%25;
@@ -102,7 +103,7 @@ if(snakeArr[0].x === food.x  && snakeArr[0].y  === food.y){
        
     }
 
-    food = {x:Math.round(a + (b-a)*Math.random()),y:Math.round(a + (b-a)*Math.random())}
+   
 }
 
 
