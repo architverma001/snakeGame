@@ -64,14 +64,14 @@
 .food {
   background: linear-gradient(red, rgb(164, 17, 205));
   border: 0.20vmin solid rgb(244, 224, 224);
-  border-radius: 100px;
+  border-radius: 15px;
   padding: 1px !important;
 }
 
 .big-food{
   background: linear-gradient(rgb(239, 138, 23), rgb(147, 6, 6));
   border: 0.20vmin solid rgb(244, 224, 224);
-  border-radius: 100px;
+  border-radius: 15px;
   padding: 1px !important;
   scale: 1.2;
 }
